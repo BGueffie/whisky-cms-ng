@@ -1,0 +1,19 @@
+<mat-selection-list #blogposts>
+    <mat-card>
+        <mat-list-option *ngFor="let bp of allBlogposts" [value]= "bp._id">
+            <a [routerLink]="['/admin/blog-posts/', bp._id]">{{bp.title}}</a>
+          </mat-list-option>
+    </mat-card>
+    
+  </mat-selection-list>
+  
+  <mat-card>Blog posts selected: {{blogposts.selectedOptions.selected.length}}</mat-card>
+  <mat-card *ngIf="blogposts.selectedOptions.selected.length" >
+      <mat-card-actions >
+          <button mat-raised-button color="primary" 
+          (click)="deleteBlogposts(blogposts.selectedOptions.selected)">
+          Delete</button>
+      </mat-card-actions>
+  </mat-card>
+
+  <app-blogpost-create></app-blogpost-create>
